@@ -8,8 +8,11 @@ const changeText = function() {
 
 }
 
-button.onclick = changeText
-
+const newText = function(){
+    const header= document.querySelector ('.ripped')
+    header.textContent = 'Captain America'
+}
+button.addEventListener('click', newText)
 
 
 

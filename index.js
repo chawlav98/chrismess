@@ -1,3 +1,6 @@
+const button = document.querySelector('#press')
+
+
 
 const button = document.querySelector('#press')
 const changeHeading = function() {
@@ -5,6 +8,9 @@ const changeHeading = function() {
      h.textContent = document.querySelector('#xtern').value
      event.preventDefault()
     }
+
+
+button.addEventListener('click',changeHeading)
 
 const enter = keyCode = 13
 

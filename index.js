@@ -1,23 +1,22 @@
-const button = document.querySelector('#press')
 
 
 
-const button = document.querySelector('#press')
-const changeHeading = function() {
-     const h = document.querySelector('h1')
-     h.textContent = document.querySelector('#xtern').value
-     event.preventDefault()
-    }
 
+const form = document.querySelector('form#flickForm')
 
-button.addEventListener('click',changeHeading)
+const updateHeading = function(ev) {
+  ev.preventDefault()
+  const f = ev.target
 
-const enter = keyCode = 13
+  const flickName = f.flickName.value
 
+  const list = document.querySelector('#flicks')
+  list.innerHTML += `<li>${flickName}</li>`
 
-button.addEventListener('click',changeHeading)
-enter.addEventListener('keyup')
+  f.reset()
+}
 
+form.addEventListener('submit', updateHeading)
 
 
 

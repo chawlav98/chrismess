@@ -6,8 +6,11 @@ const changeHeading = function() {
      event.preventDefault()
     }
 
+const enter = keyCode = 13
+
 
 button.addEventListener('click',changeHeading)
+enter.addEventListener('keyup')
 
 
 

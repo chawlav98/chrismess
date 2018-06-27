@@ -8,31 +8,32 @@
   <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-  <h1>Chrismess</h1>
+  <header>
+    <h1>Chrismess</h1>
+    <h2>a whole mess of Chrisses</h2>
+    
+  </header>
 
-  <form id="athleteForm">
-    <input
-      type="text"
-      name="athleteName"
-      placeholder="Enter an athlete"
-      autofocus
-    >
-    <button type="submit">Add Player or Artist</button>
+  <form id="flickForm">
+    <div class="justTesting seriously">
+      <input
+        type="text"
+        name="flickName"
+        placeholder="Enter a flick"
+        autofocus
+      >
+      <input
+        class="smaller"
+        type="text"
+        name="chrisName"
+        placeholder="Which Chris?"
+      >
+      <button type="submit">Update Heading</button>
+    </div>
   </form>
 
+  <ul id="flicks"></ul>
 
-  <form id="artistForm">
-        <input
-          type="text"
-          name="artistName"
-          placeholder="Enter an artist"
-          autofocus
-        >
-        
-      </form>
-
-      <ul id="athlete" style = 'color:red'></ul>
-      <ul id="artist" style = 'color:green'></ul>
   <script src="index.js"></script>
 </body>
 </html>

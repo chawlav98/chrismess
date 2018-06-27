@@ -1,49 +1,55 @@
+class App {
+  constructor() {
+    const form = document.querySelector('form#flickForm')
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault()
+      this.handleSubmit(ev)
+    })
+  }
 
+  renderProperty(name, value) {
+    const span = document.createElement('span')
+    span.classList.add(name)
+    span.textContent = value
+    return span
+  }
 
+  renderItem(flick) {
+    const item = document.createElement('li')
+    item.classList.add('flick')
 
+    // get the list of properties
+    const properties = Object.keys(flick)
 
-const form = document.querySelector('form#athleteForm')
-const form2 =document.querySelector('form#artistForm')
-const athletesList = function(ev) {
-  ev.preventDefault()
-  const f = ev.target
+    // loop over the properties
+    properties.forEach((propertyName) => {
+      // build a span, and append it to the list
+      const span = this.renderProperty(propertyName, flick[propertyName])
+      item.appendChild(span)
+    })
 
-  const athleteName = f.athleteName.value;
-  const item = document.createElement('li')
-  item.textContent = athleteName
+    return item
+  }
 
-  const list = document.querySelector('#athlete')
-  list.appendChild(item)
+  handleSubmit(ev) {
+    const f = ev.target
 
+    const flick = {
+      name: f.flickName.value,
+      chris: f.chrisName.value,
+    }
 
-  f.reset()
+    const item = this.renderItem(flick)
+
+    const list = document.querySelector('#flicks')
+    list.appendChild(item)
+
+    f.reset()
+    f.flickName.focus()
+  }
 }
 
-
-const artistList = function(ev) {
-  ev.preventDefault()
-  const a = ev.target
-
-  const artistName = a.artistName.value
-
-  const item2 = document.createElement('li')
-
-  item2.textContent = artistName
-  console.log(item2)
- 
- 
-  const list = document.querySelector('#artist')
-  list.appendChild(item2)
-
-
-  a.reset()
-}
-
-
-
-
-form.addEventListener('submit', athletesList)
-form2.addEventListener('submit', artistList)
+const app = new App()
 
 
 

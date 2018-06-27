@@ -31,8 +31,8 @@ const artistList = function(ev) {
   item2.textContent = artistName
   console.log(item2)
  
-  const list2 = document.querySelector('#artist')
-  list2.appendChild(item2)
+  const list = document.querySelector('#artist')
+  list.appendChild(item2)
 
 
   a.reset()

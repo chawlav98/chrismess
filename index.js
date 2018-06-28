@@ -1,6 +1,8 @@
 class App {
   constructor() {
     this.flicks = []
+    this.list = document.querySelector('#flicks')
+
     const form = document.querySelector('form#flickForm')
     form.addEventListener('submit', (ev) => {
       ev.preventDefault()
@@ -19,17 +21,50 @@ class App {
     const item = document.createElement('li')
     item.classList.add('flick')
 
-    // get the list of properties
+ 
     const properties = Object.keys(flick)
 
-    // loop over the properties
+    
     properties.forEach((propertyName) => {
-      // build a span, and append it to the list
+      
       const span = this.renderProperty(propertyName, flick[propertyName])
       item.appendChild(span)
     })
 
+   
+    const deleteButton = document.createElement('button')
+    deleteButton.textContent = 'delete'
+    deleteButton
+      .addEventListener(
+        'click',
+        (_ev) => this.removeFlick(flick, item)
+      )
+    item.appendChild(deleteButton)
+
+    const favButton = document.createElement('button')
+    favButton.textContent = 'favorite'
+    favButton
+      .addEventListener(
+        'click',
+        (_ev) => this.toggleFavorite(flick, item)
+      )
+    item.appendChild(favButton)
+
     return item
+  }
+
+  toggleFavorite(flick, item) {
+    
+    flick.favorite = item.classList.toggle('fav')
+  }
+
+  removeFlick(flick, item) {
+    
+    this.list.removeChild(item)
+
+    
+    const i = this.flicks.indexOf(flick)
+    this.flicks.splice(i, 1)
   }
 
   handleSubmit(ev) {
@@ -38,14 +73,13 @@ class App {
     const flick = {
       name: f.flickName.value,
       chris: f.chrisName.value,
+      favorite: false,
     }
 
     this.flicks.push(flick)
 
     const item = this.renderItem(flick)
-
-    const list = document.querySelector('#flicks')
-    list.appendChild(item)
+    this.list.appendChild(item)
 
     f.reset()
     f.flickName.focus()
@@ -53,16 +87,3 @@ class App {
 }
 
 const app = new App()
-
-
-
-
-
-
-
-
-
-
-
-
-

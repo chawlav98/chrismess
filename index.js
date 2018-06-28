@@ -10,6 +10,15 @@ class App {
     })
   }
 
+  save() {
+    //store the flicks array in localStorage
+    localStorage.setItem('flick',JSON.stringify(this.flicks))
+
+  }
+
+  load()  {
+    const flicks = JSON.parse(localStorage.getItem())
+  } 
   renderProperty(name, value) {
     const span = document.createElement('span')
     span.classList.add(name)
@@ -34,20 +43,13 @@ class App {
    
     const deleteButton = document.createElement('button')
     deleteButton.textContent = 'delete'
-    deleteButton
-      .addEventListener(
-        'click',
-        (_ev) => this.removeFlick(flick, item)
-      )
+    deleteButton .addEventListener( 'click', (_ev) => this.removeFlick(flick, item))
+    deleteButton.innerHTML = '<i class="far fa-trash-alt"></i>'
     item.appendChild(deleteButton)
 
     const favButton = document.createElement('button')
     favButton.textContent = 'favorite'
-    favButton
-      .addEventListener(
-        'click',
-        (_ev) => this.toggleFavorite(flick, item)
-      )
+    favButton.addEventListener('click',(_ev) => this.toggleFavorite(flick, item))
     item.appendChild(favButton)
 
     return item
@@ -65,6 +67,7 @@ class App {
     
     const i = this.flicks.indexOf(flick)
     this.flicks.splice(i, 1)
+    this.save()
   }
 
   handleSubmit(ev) {
